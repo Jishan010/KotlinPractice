@@ -15,10 +15,14 @@ fun main() {
                 break
             }
 
-            val selectedMenu = menuMap[userInput.toInt()];
+            val selectedMenu = menuMap[userInput.toInt()]
+            if (selectedMenu == null) {
+                println("Invalid coffee choice. Please choose between 0-2.")
+                continue
+            }
             println(userInput)
-            val checkAvailability = selectedMenu?.let { resources.getMenuAvailability(it) }
-            if (checkAvailability == true) {
+            val checkAvailability = resources.getMenuAvailability(selectedMenu)
+            if (checkAvailability) {
                 println("Making ${selectedMenu.name}.....")
                 Thread.sleep(3000)
                 println("Here is your ${selectedMenu.name}. Enjoy!")
